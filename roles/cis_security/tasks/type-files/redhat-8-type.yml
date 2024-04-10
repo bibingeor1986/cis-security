@@ -539,7 +539,7 @@
 # Turn off and disable the autofs service using the service module.
 # We check to see if the package that autofs belongs to (convienently called autofs)
 #  exists in the ansible_facts.packages list we gathered early in the play
-- name: 1.1.22 - disable automounting
+- name: 1.1.9 - disable automounting
   ansible.builtin.systemd:
     name: autofs
     enabled: false
@@ -547,9 +547,9 @@
     masked: true
   when: "'autofs' in ansible_facts.packages"
   tags:
-    - 1.1.22
+    - 1.1.9
 
-- name: 1.1.23 - Disable USB storage module
+- name: 1.1.10 - Disable USB storage module
   ansible.builtin.lineinfile:
     dest: /etc/modprobe.d/CIS.conf
     line: "install usb-storage /bin/true"
@@ -559,7 +559,7 @@
     group: root
     mode: 0644
   tags:
-    - 1.1.23
+    - 1.1.10
 
 # Control 1.2.1 is system updating. Make sure system is set for some kind of system software update
 
@@ -2281,7 +2281,7 @@
     # Control 4.2.1.6 - Ensure rsyslog is configured to send logs to a remote log host is machine dependent
     # skipping
 
-    - name: 4.2.1.7 - Ensure remote rsyslog messages are only acepted on designated log hosts
+    - name: 4.2.1.7 - Ensure remote rsyslog messages are only accepted on designated log hosts
       tags:
         - 4.2.1.7
       block:
